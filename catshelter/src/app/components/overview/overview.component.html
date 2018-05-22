@@ -1,0 +1,19 @@
+
+<mat-card>
+    <div class="box">
+      <button (click)="showShelters()" mat-raised-button color="primary">Shelters</button>
+    </div>
+    <div class="box">
+      <button (click)="showCats()" mat-raised-button color="primary">Cats</button>
+    </div>
+
+    <shelter *ngIf="showshelterpanel"></shelter>
+    <cat *ngIf="showcatspanel"></cat>
+
+</mat-card>
+
+
+
+
+
+  
