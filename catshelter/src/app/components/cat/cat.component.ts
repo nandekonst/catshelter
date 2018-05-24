@@ -3,6 +3,7 @@ import {MatTableDataSource} from '@angular/material';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { DataOperations } from 'ng-jexia';
 import {MatDialog} from "@angular/material";
+import {RegisterService} from '../../services/register.service';
 import {CatDialogComponent} from '../cat-dialog/cat-dialog.component';
 import { ICat } from '../cat/cat';
 
@@ -13,27 +14,30 @@ import { ICat } from '../cat/cat';
 })
 
 
-
 export class CatComponent {
+  CATS_DATA: ICat[] = this.registerService.catlist;
   displayedColumns = ['name', 'color', 'race', 'vaccinated', 'sheltername' , 'action'];
-  dataSource = new MatTableDataSource(CATS_DATA);
+  dataSource = new MatTableDataSource(this.CATS_DATA);
   dialogResult = "";
+
+
 
  // catsDataset = this.dataOperations.dataset<Cat>('cats');
  // cats = this.catsDataset.select().execute();
 
-  constructor(private dataOperations: DataOperations, private dialog: MatDialog) { }
+  constructor(private registerService: RegisterService, private dataOperations: DataOperations, private dialog: MatDialog) { }
   
   ngOnInit() {
-    //console.log("THESE ARE CATS" + JSON.stringify(this.cats))
-  
-    
+    console.log("CATS_DATA" + this.CATS_DATA);
+
   }
+
+
 
   openDialog(){
     let dialogRef = this.dialog.open(CatDialogComponent, {
       width: '600px',
-      data: "Create a Cat"
+      data: {}
     });
 
     dialogRef.afterClosed().subscribe(result => {
@@ -47,25 +51,24 @@ export class CatComponent {
     filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
     this.dataSource.filter = filterValue;
   }
-
-  addCat(){
-    console.log("Add Cat");
+  
+  
+  getCats(){
+    return this.registerService.getCats();
+    //hope to do this soon here with Jexia
   }
 
-  deleteCat(){
-    console.log("Delete cat");
+  deleteCat(id){
+    console.log("Delete cat" + id);
+    return this.registerService.removeCat(id);
+    //hope to do this soon here with Jexia
   }
 
-  editCat(){
+  editCat(id){
     console.log("Edit cat");
+    return this.registerService.updateCat(id);
+    //hope to do this soon here with Jexia
   }
 }
 
 
-const CATS_DATA: ICat[] = [
-  {name: "Kitty", color: "gray", race: "Siamese", vaccinated: true, sheltername: "The Catshouse"},
-  {name: "Lester", color: "white", race: "European", vaccinated: false, sheltername: "Dreamy Shelters"},
-  {name: "Jenny", color: "black", race: "European", vaccinated: true, sheltername:"The Catshouse"},
-  {name: "Funky", color: "red", race: "Maine Coon", vaccinated: false, sheltername:"The Catshouse"},
-
-];

@@ -3,7 +3,36 @@
   <mat-dialog-content>
     Create something 
     <br>
+  
+  <form [formGroup]="catform" (submit)="onSubmit()">
+    <mat-form-field>
+        <input type="text" matInput placeholder="ID" formControlName="id" class="form-control">
+    </mat-form-field>
+
+    <mat-form-field>
+        <input type="text" matInput placeholder="name" formControlName="name" class="form-control">
+    </mat-form-field>
+
+    <mat-form-field>
+        <input type="text" matInput placeholder="color" formControlName="color" class="form-control">
+    </mat-form-field>
+
+    <mat-form-field>
+        <input type="text" matInput placeholder="race" formControlName="id" class="form-control">
+    </mat-form-field>
+
+    <mat-form-field>
+        <input type="text" matInput placeholder="sheltername" formControlName="sheltername" class="form-control">
+    </mat-form-field>
     
+    <mat-form-field>
+        <input matInput placeholder="Input">
+        <mat-checkbox formControlName="vaccinated">Vaccinated?</mat-checkbox>
+    </mat-form-field>
+
+    <button type="submit" class="primary">Submit</button>
+
+  </form>
     <strong>{{data}}</strong>
   </mat-dialog-content>
   <mat-dialog-actions>

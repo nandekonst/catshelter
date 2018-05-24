@@ -14,6 +14,10 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatInputModule} from '@angular/material';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDialogModule} from "@angular/material";
+import {MatRadioModule} from '@angular/material/radio';
+import {MatCheckboxModule} from '@angular/material/checkbox';
+
+import {ReactiveFormsModule } from '@angular/forms';
 
 import { OverviewComponent } from './components/overview/overview.component';
 import { ShelterComponent } from './components/shelter/shelter.component';
@@ -21,6 +25,7 @@ import { CatComponent } from './components/cat/cat.component';
 import { NgJexiaModule, DataOperationsModule } from 'ng-jexia';
 import { CatDialogComponent } from './components/cat-dialog/cat-dialog.component';
 
+import {RegisterService} from './services/register.service';
 
 
 @NgModule({
@@ -36,8 +41,8 @@ import { CatDialogComponent } from './components/cat-dialog/cat-dialog.component
     BrowserModule,
     NgJexiaModule.initialize({
       projectID: '69d260b4-e887-43f8-9096-586f9ddd57be',
-      key: '8173440b-c01c-4c39-9c65-880078a3f6fc',
-      secret: 'eEFGMGybQBI5hy89',
+      key: '5d43c06d-974d-46a8-8299-164dc4e6a7f0',
+      secret: 'jNmyFzXInsyE3RZB',
       providers: [
         DataOperationsModule,
       ],
@@ -52,9 +57,12 @@ import { CatDialogComponent } from './components/cat-dialog/cat-dialog.component
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
-    MatDialogModule
+    MatDialogModule,
+    ReactiveFormsModule,
+    MatRadioModule,
+    MatCheckboxModule
   ],
-  providers: [],
+  providers: [RegisterService],
   bootstrap: [AppComponent],
   entryComponents: [CatDialogComponent]
 
