@@ -1,43 +1,43 @@
 <div>
-  <h2 mat-dialog-title>Create </h2>
-  <mat-dialog-content>
-    Create something 
-    <br>
-  
+  <h2 mat-dialog-title>Add Cat </h2>
   <form [formGroup]="catform" (submit)="onSubmit()">
-    <mat-form-field>
+
+  <mat-dialog-content>
+    <br>
+  <div class="form-container">
+
+    <mat-form-field class="formfield">
         <input type="text" matInput placeholder="ID" formControlName="id" class="form-control">
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field class="formfield">
         <input type="text" matInput placeholder="name" formControlName="name" class="form-control">
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field class="formfield">
         <input type="text" matInput placeholder="color" formControlName="color" class="form-control">
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field class="formfield">
         <input type="text" matInput placeholder="race" formControlName="id" class="form-control">
     </mat-form-field>
 
-    <mat-form-field>
+    <mat-form-field class="formfield">
         <input type="text" matInput placeholder="sheltername" formControlName="sheltername" class="form-control">
     </mat-form-field>
     
-    <mat-form-field>
-        <input matInput placeholder="Input">
+    <mat-form-field class="formfield">
+        <input matInput>
         <mat-checkbox formControlName="vaccinated">Vaccinated?</mat-checkbox>
     </mat-form-field>
+  </div>
 
-    <button type="submit" class="primary">Submit</button>
-
-  </form>
-    <strong>{{data}}</strong>
   </mat-dialog-content>
   <mat-dialog-actions>
-    <button mat-raised-button (click)="onCloseConfirm()">CONFIRM</button>
+    <button type= "submit" mat-raised-button (click)="onCloseConfirm()">CONFIRM</button>
     <button mat-raised-button (click)="onCloseCancel()">CANCEL</button>
 
   </mat-dialog-actions>
+</form>
+
 </div>
