@@ -17,7 +17,8 @@ import {MatDialogModule} from "@angular/material";
 import {MatRadioModule} from '@angular/material/radio';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 
-import {ReactiveFormsModule } from '@angular/forms';
+import {ReactiveFormsModule, FormsModule,FormGroup } from '@angular/forms';
+import {CdkTableModule} from '@angular/cdk/table';
 
 import { OverviewComponent } from './components/overview/overview.component';
 import { ShelterComponent } from './components/shelter/shelter.component';
@@ -61,7 +62,11 @@ import {RegisterService} from './services/register.service';
     MatDialogModule,
     ReactiveFormsModule,
     MatRadioModule,
-    MatCheckboxModule
+    MatCheckboxModule,
+    CdkTableModule,
+    ReactiveFormsModule, 
+    FormsModule
+    
   ],
   providers: [RegisterService],
   bootstrap: [AppComponent],

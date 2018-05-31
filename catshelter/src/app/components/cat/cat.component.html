@@ -5,38 +5,33 @@
             <mat-icon aria-label="create">add_box</mat-icon> Add Cat
         </button>
       </div>
-      <mat-form-field>
+     <!-- <mat-form-field>
         <input matInput (keyup)="applyFilter($event.target.value)" placeholder="Filter">
       </mat-form-field>
-    </div>
+    </div>-->
   
-    <table mat-table #table [dataSource]="dataSource">
+    <!-- <table mat-table #table [dataSource]="dataSource">
   
-      <!-- Position Column -->
       <ng-container matColumnDef="name">
         <th mat-header-cell *matHeaderCellDef> Name </th>
         <td mat-cell *matCellDef="let cat"> {{cat.name}} </td>
       </ng-container>
   
-      <!-- Name Column -->
       <ng-container matColumnDef="color">
         <th mat-header-cell *matHeaderCellDef> Color </th>
         <td mat-cell *matCellDef="let cat"> {{cat.color}} </td>
       </ng-container>
   
-      <!-- Weight Column -->
       <ng-container matColumnDef="race">
         <th mat-header-cell *matHeaderCellDef> Race </th>
         <td mat-cell *matCellDef="let cat"> {{cat.race}} </td>
       </ng-container>
   
-      <!-- Symbol Column -->
       <ng-container matColumnDef="vaccinated">
         <th mat-header-cell *matHeaderCellDef> Vaccinated </th>
         <td mat-cell *matCellDef="let cat"> {{cat.vaccinated}} </td>
       </ng-container>
 
-      <!-- Symbol Column -->
       <ng-container matColumnDef="sheltername">
         <th mat-header-cell *matHeaderCellDef> Shelter name </th>
         <td mat-cell *matCellDef="let cat"> {{cat.sheltername}} </td>
@@ -58,8 +53,26 @@
         </ng-container>
        
 
-  
       <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
       <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table> -->
+    <table class="table" >
+        <thead>
+            <tr>
+              <th scope="col">Name</th>
+              <th scope="col">Color</th>
+              <th scope="col">Race</th>
+              <th scope="col">Vaccinated</th>
+            </tr>
+        </thead>
+        <tbody>
+
+        <tr *ngFor="let cat of cats | async">
+          <td>{{cat.name}}</td>
+          <td>{{cat.color}}</td>
+          <td>{{cat.race}}</td>
+          <td>{{cat.vaccinated}}</td>
+        </tr>
+      </tbody>
     </table>
   </div>

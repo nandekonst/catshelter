@@ -3,6 +3,8 @@ import {MatTableDataSource} from '@angular/material';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { DataOperations } from 'ng-jexia';
 import {MatDialog} from "@angular/material";
+import {CdkTableModule} from '@angular/cdk/table';
+
 import {RegisterService} from '../../services/register.service';
 import {CatDialogComponent} from '../cat-dialog/cat-dialog.component';
 import { ICat } from '../cat/cat';
@@ -15,21 +17,19 @@ import { ICat } from '../cat/cat';
 
 
 export class CatComponent {
+ 
   CATS_DATA: ICat[] = this.registerService.catlist;
   displayedColumns = ['name', 'color', 'race', 'vaccinated', 'sheltername' , 'action'];
   dataSource = new MatTableDataSource(this.CATS_DATA);
   dialogResult = "";
+  cats = this.registerService.cats;
 
 
-
- // catsDataset = this.dataOperations.dataset<Cat>('cats');
- // cats = this.catsDataset.select().execute();
 
   constructor(private registerService: RegisterService, private dataOperations: DataOperations, private dialog: MatDialog) { }
   
   ngOnInit() {
     console.log("CATS_DATA" + this.CATS_DATA);
-
   }
 
 
@@ -52,11 +52,7 @@ export class CatComponent {
     this.dataSource.filter = filterValue;
   }
   
-  
-  getCats(){
-    return this.registerService.getCats();
-    //hope to do this soon here with Jexia
-  }
+
 
   deleteCat(id){
     console.log("Delete cat" + id);
