@@ -18,21 +18,15 @@ import { ICat } from '../cat/cat';
 
 export class CatComponent {
  
-  CATS_DATA: ICat[] = this.registerService.catlist;
   displayedColumns = ['name', 'color', 'race', 'vaccinated', 'sheltername' , 'action'];
-  dataSource = new MatTableDataSource(this.CATS_DATA);
   dialogResult = "";
   cats = this.registerService.cats;
-
-
+  cat: ICat;
 
   constructor(private registerService: RegisterService, private dataOperations: DataOperations, private dialog: MatDialog) { }
   
   ngOnInit() {
-    console.log("CATS_DATA" + this.CATS_DATA);
   }
-
-
 
   openDialog(){
     let dialogRef = this.dialog.open(CatDialogComponent, {
@@ -46,24 +40,13 @@ export class CatComponent {
     })
   }
 
-  applyFilter(filterValue: string) {
-    filterValue = filterValue.trim(); // Remove whitespace
-    filterValue = filterValue.toLowerCase(); // MatTableDataSource defaults to lowercase matches
-    this.dataSource.filter = filterValue;
-  }
   
-
-
-  deleteCat(id){
-    console.log("Delete cat" + id);
+  deleteCat(id: string){
     return this.registerService.removeCat(id);
-    //hope to do this soon here with Jexia
   }
 
-  editCat(id){
-    console.log("Edit cat");
-    return this.registerService.updateCat(id);
-    //hope to do this soon here with Jexia
+  editCat(cat: ICat){
+    return this.registerService.updateCat(cat);
   }
 }
 

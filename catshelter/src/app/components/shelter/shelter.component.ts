@@ -14,12 +14,13 @@ import { IShelter } from '../shelter/shelter';
   styleUrls: ['./shelter.component.css']
 })
 export class ShelterComponent implements OnInit {
-  SHELTER_DATA: IShelter[] = this.registerService.shelterlist;
+  SHELTER_DATA: IShelter[] = []
 
   displayedColumns = ['name', 'address', 'telephone', 'email', 'action'];
   dataSource = new MatTableDataSource(this.SHELTER_DATA);
   dialogResult: "";
-  
+  shelters = this.registerService.shelters;
+
 
   applyFilter(filterValue: string) {
     filterValue = filterValue.trim(); // Remove whitespace

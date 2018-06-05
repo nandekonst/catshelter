@@ -2,57 +2,49 @@ import { Injectable } from '@angular/core';
 import { ICat } from '../components/cat/cat';
 import { IShelter} from '../components/shelter/shelter';
 import { DataOperations } from 'ng-jexia';
+import { field } from 'jexia-sdk-js/api/dataops/filteringApi';
 
 @Injectable({
   providedIn: 'root'
 })
 export class RegisterService {
 
-  public catlist: ICat[];
-  public shelterlist: IShelter;
+  //public catlist: ICat[];
+  //public shelterlist: IShelter[];
 
+  shelterDataset = this.dataOperations.dataset<IShelter>('shelters')
   catDataset = this.dataOperations.dataset<ICat>('cats');
   public cats = this.catDataset.select().execute();
-
+  public shelters = this.shelterDataset.select().execute();
   constructor(private dataOperations: DataOperations) { }
 
   addCat(cat: ICat[]){
-    //this.catlist.push(cat);
-    //console.log("CATLIST" + JSON.stringify(this.catlist))
     this.catDataset.insert(cat).execute();
-
   }
 
-  addShelter(shelter: IShelter){
-    //this.shelterlist.push(shelter);
-    //console.log("CATLIST" + JSON.stringify(this.catlist))
-
+  addShelter(shelter: IShelter[]){
+    this.shelterDataset.insert(shelter).execute();
   }
 
-  getCats(){
-    //return this.catlist;
-    this.catDataset = this.dataOperations.dataset<ICat>('cats');
-    return this.cats
-  }
-
-  getShelters(){
-    return this.shelterlist;
-  }
   
-  removeShelter(id: number){
+  
+  
+  removeShelter(id: string){
    // const shelter = this.shelterlist.findIndex(s => s.id === id);
     //this.shelterlist.splice(shelter, 1);
 
   }
 
-  removeCat(id: number){
-    //const cat = this.catlist.findIndex(c => c.id === id);
-    //console.log("CATID" + cat)
-    //this.catlist.splice(cat, 1);
+  removeCat(id: string){
+    this.catDataset.delete().where(field("id").isEqualTo(id)).execute();
+    console.log("Delete cat" + id);
+
 
   }
 
-  updateCat(id: number){
+  updateCat(cat: ICat){
+    //this.catDataset.update(cat).execute();
+    console.log("Edit cat" + JSON.stringify(cat));
 
   }
 
