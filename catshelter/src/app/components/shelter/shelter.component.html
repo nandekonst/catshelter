@@ -71,6 +71,11 @@
       <td>{{shelter.address}}</td>
       <td>{{shelter.telephone}}</td>
       <td>{{shelter.email}}</td>
+      <td>
+        <button mat-raised-button color="primary" (click)="editShelter(shelter)">Edit</button>
+        <button mat-raised-button color="warn" (click)="deleteShelter(shelter.id)">Delete</button>
+
+    </td>
     </tr>
   </tbody>
 </table>

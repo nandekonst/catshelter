@@ -19,7 +19,10 @@
     </mat-form-field>
 
     <mat-form-field class="formfield">
-        <input type="text" matInput placeholder="sheltername" formControlName="sheltername" class="form-control">
+        <mat-select class="form-control" matInput formControlName="sheltername">
+            <mat-option value="default">Select a shelter</mat-option>
+            <mat-option *ngFor="let shelter of shelters | async" value="shelter">{{shelter.name}}</mat-option>
+        </mat-select>
     </mat-form-field>
     
     <mat-form-field class="formfield">

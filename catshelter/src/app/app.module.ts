@@ -16,6 +16,8 @@ import {MatIconModule} from '@angular/material/icon';
 import {MatDialogModule} from "@angular/material";
 import {MatRadioModule} from '@angular/material/radio';
 import {MatCheckboxModule} from '@angular/material/checkbox';
+import {MatSelectModule} from '@angular/material/select';
+
 
 import {ReactiveFormsModule, FormsModule,FormGroup } from '@angular/forms';
 import {CdkTableModule} from '@angular/cdk/table';
@@ -63,6 +65,7 @@ import {RegisterService} from './services/register.service';
     ReactiveFormsModule,
     MatRadioModule,
     MatCheckboxModule,
+    MatSelectModule,
     CdkTableModule,
     ReactiveFormsModule, 
     FormsModule

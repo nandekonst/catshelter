@@ -9,14 +9,14 @@ import { field } from 'jexia-sdk-js/api/dataops/filteringApi';
 })
 export class RegisterService {
 
-  //public catlist: ICat[];
-  //public shelterlist: IShelter[];
-
   shelterDataset = this.dataOperations.dataset<IShelter>('shelters')
   catDataset = this.dataOperations.dataset<ICat>('cats');
-  public cats = this.catDataset.select().execute();
+  //public cats = this.catDataset.select().execute();
+  public cats = this.catDataset.select().relation(this.shelterDataset).execute();
   public shelters = this.shelterDataset.select().execute();
   constructor(private dataOperations: DataOperations) { }
+
+  
 
   addCat(cat: ICat[]){
     this.catDataset.insert(cat).execute();
@@ -25,11 +25,10 @@ export class RegisterService {
   addShelter(shelter: IShelter[]){
     this.shelterDataset.insert(shelter).execute();
   }
-
-  
-  
   
   removeShelter(id: string){
+    this.shelterDataset.delete().where(field("id").isEqualTo(id)).execute();
+    console.log("Delete shelter" + id);
    // const shelter = this.shelterlist.findIndex(s => s.id === id);
     //this.shelterlist.splice(shelter, 1);
 

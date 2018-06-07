@@ -21,7 +21,6 @@ export class ShelterDialogComponent implements OnInit {
 
   ngOnInit() {
     this.shelterform = this.formbuilder.group({
-      id: '',
       name: '',
       address: '',
       telephone: '',
@@ -40,7 +39,10 @@ export class ShelterDialogComponent implements OnInit {
   }
 
   onSubmit(){
-    this.registerservice.addShelter(this.shelterform.value)
+
+    let shelterform_array = []
+    shelterform_array.push(this.shelterform.value);
+    this.registerservice.addShelter(shelterform_array)
   }
 
 }

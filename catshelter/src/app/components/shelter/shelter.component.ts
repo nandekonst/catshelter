@@ -53,8 +53,10 @@ export class ShelterComponent implements OnInit {
     console.log("Edit shelter");
   }
 
-  deleteShelter(){
-    console.log("Delete shelter");
+
+
+  deleteShelter(id: string){
+    return this.registerService.removeShelter(id);
   }
 
 }

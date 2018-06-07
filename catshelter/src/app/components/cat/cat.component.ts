@@ -21,7 +21,6 @@ export class CatComponent {
   displayedColumns = ['name', 'color', 'race', 'vaccinated', 'sheltername' , 'action'];
   dialogResult = "";
   cats = this.registerService.cats;
-  cat: ICat;
 
   constructor(private registerService: RegisterService, private dataOperations: DataOperations, private dialog: MatDialog) { }
   

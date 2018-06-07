@@ -13,6 +13,7 @@
               <th scope="col">Color</th>
               <th scope="col">Race</th>
               <th scope="col">Vaccinated</th>
+              <th scope="col">Shelter Name</th>
               <th scope="col">Action</th>
             </tr>
         </thead>
@@ -23,6 +24,9 @@
           <td>{{cat.color}}</td>
           <td>{{cat.race}}</td>
           <td>{{cat.vaccinated}}</td>
+          <td *ngFor="let shelter of cat.shelters">{{shelter.name}}</td>
+
+
           <td>
               <button mat-raised-button color="primary" (click)="editCat(cat)">Edit</button>
               <button mat-raised-button color="warn" (click)="deleteCat(cat.id)">Delete</button>
