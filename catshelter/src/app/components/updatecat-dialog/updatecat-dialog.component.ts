@@ -28,6 +28,7 @@ constructor( private dataOperations: DataOperations, private formbuilder: FormBu
  }
 
   onCloseConfirm(){
+    console.log("Update this cat" + JSON.stringify(this.catToUpdate))
     this.dialogRef.close('Confirm');
     this.registerservice.updateCat(this.catToUpdate);
 

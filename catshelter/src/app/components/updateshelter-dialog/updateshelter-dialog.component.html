@@ -1,0 +1,35 @@
+<div>
+    <h2 mat-dialog-title>Update Shelter </h2>
+    <form  (submit)="onSubmit()">
+  
+    <mat-dialog-content >
+      <br>
+    <div class="form-container" >
+    
+      <mat-form-field class="formfield">
+          <input type="text"  matInput placeholder="name" [(ngModel)]="shelterToUpdate.shelter.name" name="name" [value]="shelterToUpdate.shelter.name" class="form-control">
+      </mat-form-field>
+  
+      <mat-form-field class="formfield">
+          <input type="text" matInput placeholder="address"  [(ngModel)]="shelterToUpdate.shelter.address" name="address" [value]="shelterToUpdate.shelter.address" class="form-control">
+      </mat-form-field>
+  
+      <mat-form-field class="formfield">
+          <input type="text" matInput placeholder="telephone"  [(ngModel)]="shelterToUpdate.shelter.telephone" name="telephone"[value]="shelterToUpdate.shelter.telephone" class="form-control">
+      </mat-form-field>
+
+      <mat-form-field class="formfield">
+          <input type="text" matInput placeholder="email"  [(ngModel)]="shelterToUpdate.shelter.email" name="email"[value]="shelterToUpdate.shelter.email" class="form-control">
+      </mat-form-field>
+      
+    </div>
+  
+    </mat-dialog-content>
+    <mat-dialog-actions>
+      <button type= "submit" mat-raised-button (click)="onCloseConfirm()">CONFIRM</button>
+      <button mat-raised-button (click)="onCloseCancel()">CANCEL</button>
+  
+    </mat-dialog-actions>
+  </form>
+  
+  </div>

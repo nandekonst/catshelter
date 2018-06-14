@@ -5,6 +5,7 @@ import {MatButtonModule} from '@angular/material/button';
 import {MatIconModule} from '@angular/material/icon';
 import {MatDialog} from "@angular/material";
 import {ShelterDialogComponent} from '../shelter-dialog/shelter-dialog.component';
+import {UpdateshelterDialogComponent} from '../updateshelter-dialog/updateshelter-dialog.component';
 import {RegisterService} from '../../services/register.service';
 import { IShelter } from '../shelter/shelter';
 
@@ -28,9 +29,6 @@ export class ShelterComponent implements OnInit {
     this.dataSource.filter = filterValue;
   }
   
-
-
-
   constructor(private dialog: MatDialog, private registerService: RegisterService) { }
 
   ngOnInit() {
@@ -49,8 +47,12 @@ export class ShelterComponent implements OnInit {
     })
   }
 
-  editShelter(){
+  editShelter(shelter: IShelter[]){
     console.log("Edit shelter");
+    let dialogRef = this.dialog.open(UpdateshelterDialogComponent, {
+      width: '600px',
+      data: { shelter  }
+    });
   }
 
 

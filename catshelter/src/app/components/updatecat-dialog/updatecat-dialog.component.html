@@ -17,19 +17,10 @@
     <mat-form-field class="formfield">
         <input type="text" matInput placeholder="race"  [(ngModel)]="catToUpdate.cat.race" name="race"[value]="catToUpdate.cat.race" class="form-control">
     </mat-form-field>
-
-    <mat-form-field class="formfield">
-        <mat-select class="form-control" matInput  >
-            <mat-option value="default">Select a shelter</mat-option>
-            <mat-option *ngFor="let shelter of shelters | async" [value]="shelter.name">{{shelter.name}}</mat-option>
-        </mat-select>
-
-    </mat-form-field>
-
     
     <mat-form-field class="formfield">
         <input matInput>
-        <mat-checkbox placeholder="Vaccinated" value="false" >Yes</mat-checkbox>
+        <mat-checkbox placeholder="Vaccinated" [(ngModel)]="catToUpdate.cat.vaccinated" name="false"  >Yes</mat-checkbox>
 
     </mat-form-field>
   </div>
