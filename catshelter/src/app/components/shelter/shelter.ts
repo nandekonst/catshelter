@@ -1,5 +1,5 @@
 export interface IShelter {
-    id: number,
+    id: string,
     name: string;
     address: string;
     telephone: number;

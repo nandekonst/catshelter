@@ -29,6 +29,7 @@ import { NgJexiaModule, DataOperationsModule } from 'ng-jexia';
 import { CatDialogComponent } from './components/cat-dialog/cat-dialog.component';
 import {ShelterDialogComponent} from './components/shelter-dialog/shelter-dialog.component';
 import {RegisterService} from './services/register.service';
+import { UpdatecatDialogComponent } from './components/updatecat-dialog/updatecat-dialog.component';
 
 
 @NgModule({
@@ -39,7 +40,8 @@ import {RegisterService} from './services/register.service';
     ShelterComponent,
     CatComponent,
     CatDialogComponent,
-    ShelterDialogComponent
+    ShelterDialogComponent,
+    UpdatecatDialogComponent
   ],
   imports: [
     BrowserModule,
@@ -73,7 +75,7 @@ import {RegisterService} from './services/register.service';
   ],
   providers: [RegisterService],
   bootstrap: [AppComponent],
-  entryComponents: [CatDialogComponent, ShelterDialogComponent]
+  entryComponents: [CatDialogComponent, ShelterDialogComponent, UpdatecatDialogComponent]
 
 })
 export class AppModule { }

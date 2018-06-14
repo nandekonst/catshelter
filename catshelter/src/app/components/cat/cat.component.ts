@@ -7,6 +7,7 @@ import {CdkTableModule} from '@angular/cdk/table';
 
 import {RegisterService} from '../../services/register.service';
 import {CatDialogComponent} from '../cat-dialog/cat-dialog.component';
+import {UpdatecatDialogComponent} from '../updatecat-dialog/updatecat-dialog.component';
 import { ICat } from '../cat/cat';
 
 @Component({
@@ -21,6 +22,7 @@ export class CatComponent {
   displayedColumns = ['name', 'color', 'race', 'vaccinated', 'sheltername' , 'action'];
   dialogResult = "";
   cats = this.registerService.cats;
+  catsds = this.registerService.catsds;
 
   constructor(private registerService: RegisterService, private dataOperations: DataOperations, private dialog: MatDialog) { }
   
@@ -44,8 +46,18 @@ export class CatComponent {
     return this.registerService.removeCat(id);
   }
 
-  editCat(cat: ICat){
-    return this.registerService.updateCat(cat);
+  editCat(cat: ICat[]){
+    let dialogRef = this.dialog.open(UpdatecatDialogComponent, {
+      width: '600px',
+      data: { cat  }
+    });
+
+    dialogRef.afterClosed().subscribe(result => {
+      console.log("Dialog cloased:" + result);
+      this.dialogResult = result;
+    })
+
+
   }
 }
 

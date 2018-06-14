@@ -11,7 +11,7 @@ export class RegisterService {
 
   shelterDataset = this.dataOperations.dataset<IShelter>('shelters')
   catDataset = this.dataOperations.dataset<ICat>('cats');
-  //public cats = this.catDataset.select().execute();
+  public catsds = this.catDataset.select().execute();
   public cats = this.catDataset.select().relation(this.shelterDataset).execute();
   public shelters = this.shelterDataset.select().execute();
   constructor(private dataOperations: DataOperations) { }
@@ -19,7 +19,10 @@ export class RegisterService {
   
 
   addCat(cat: ICat[]){
+    console.log("THE CAT" + JSON.stringify(cat))
+
     this.catDataset.insert(cat).execute();
+    
   }
 
   addShelter(shelter: IShelter[]){
@@ -41,9 +44,12 @@ export class RegisterService {
 
   }
 
-  updateCat(cat: ICat){
-    //this.catDataset.update(cat).execute();
-    console.log("Edit cat" + JSON.stringify(cat));
+  updateCat(cat: any){
+    
+    const filter = field("id").isEqualTo(cat.cat.id)
+
+    this.catDataset.update({"id":cat.cat.id, "name":cat.cat.name,"color":cat.cat.color,"race":cat.cat.race,"vaccinated": cat.cat.vaccinated }).where(filter).execute();
+    console.log("Edit cat" + JSON.stringify(cat.cat.id));
 
   }
 
