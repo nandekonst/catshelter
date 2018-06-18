@@ -32,9 +32,7 @@ export class RegisterService {
   removeShelter(id: string){
     this.shelterDataset.delete().where(field("id").isEqualTo(id)).execute();
     console.log("Delete shelter" + id);
-   // const shelter = this.shelterlist.findIndex(s => s.id === id);
-    //this.shelterlist.splice(shelter, 1);
-
+  
   }
 
   removeCat(id: string){
@@ -53,8 +51,9 @@ export class RegisterService {
 
   }
 
-  updateShelter(id:number){
-    
+  updateShelter(shelter:any){
+    const filter = field("id").isEqualTo(shelter.shelter.id)
+    this.shelterDataset.update({"id":shelter.shelter.id, "name":shelter.shelter.name, "address": shelter.shelter.address, "telephone": shelter.shelter.telephone, "email": shelter.shelter.email})
   }
 
 }

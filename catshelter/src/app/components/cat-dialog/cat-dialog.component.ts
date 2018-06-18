@@ -25,6 +25,8 @@ export class CatDialogComponent implements OnInit {
  vaccinated: FormControl;
  sheltername: FormControl;
  shelters_id: FormControl;
+ shelters = this.registerservice.shelters;
+
 
  
  
