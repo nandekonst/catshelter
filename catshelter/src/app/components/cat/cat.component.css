@@ -18,11 +18,17 @@
     width: 100%;
   }
 
-  .add-cat{
-    margin-top: 10px;
-    margin-bottom: 20px;
+  .action-button{
+    margin-top: 20px;
+    display: inline;
+
 
   }
   .mat-raised-button{
     margin: 2px !important;
+  }
+
+  .table{
+
+    margin-top: 20px;
   }

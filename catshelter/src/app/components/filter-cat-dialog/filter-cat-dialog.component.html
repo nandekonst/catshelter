@@ -1,0 +1,40 @@
+<div>
+  <h2 mat-dialog-title>Filter Actions </h2>
+  <form [formGroup]="catfilterform" (submit)="onSubmit()">
+      <mat-dialog-content>
+
+        <div class="form-container">
+            <mat-form-field class="formfield">
+                <mat-select class="form-control" matInput formControlName="color">
+                    <mat-option value="default">Select a color</mat-option>
+                    <mat-option value="black">black</mat-option>
+                    <mat-option value="white">white</mat-option>
+                    <mat-option value="red">red</mat-option>
+                    <mat-option value="multicolor">multicolor</mat-option>
+                </mat-select>
+        
+            </mat-form-field>
+            <mat-form-field class="formfield">
+                <mat-select class="form-control" matInput formControlName="race">
+                    <mat-option value="default">Select a race</mat-option>
+                    <mat-option value="european">European</mat-option>
+                    <mat-option value="siamese">Siamese</mat-option>
+                </mat-select>
+        
+            </mat-form-field>
+            <mat-form-field class="formfield">
+                <input matInput>
+                <mat-checkbox placeholder="Vaccinated" value="false" formControlName="vaccinated">Yes</mat-checkbox>
+        
+            </mat-form-field>
+        </div>
+      </mat-dialog-content>
+      <mat-dialog-actions>
+          <button type= "submit" mat-raised-button (click)="onCloseConfirm()">CONFIRM</button>
+          <button mat-raised-button (click)="onCloseCancel()">CANCEL</button>
+      
+        </mat-dialog-actions>
+
+  </form>
+
+</div>

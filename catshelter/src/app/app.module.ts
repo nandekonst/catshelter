@@ -17,6 +17,8 @@ import {MatDialogModule} from "@angular/material";
 import {MatRadioModule} from '@angular/material/radio';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSelectModule} from '@angular/material/select';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatNativeDateModule   } from '@angular/material';
 
 
 import {ReactiveFormsModule, FormsModule,FormGroup } from '@angular/forms';
@@ -31,6 +33,7 @@ import {ShelterDialogComponent} from './components/shelter-dialog/shelter-dialog
 import {RegisterService} from './services/register.service';
 import { UpdatecatDialogComponent } from './components/updatecat-dialog/updatecat-dialog.component';
 import { UpdateshelterDialogComponent } from './components/updateshelter-dialog/updateshelter-dialog.component';
+import { FilterCatDialogComponent } from './components/filter-cat-dialog/filter-cat-dialog.component';
 
 
 @NgModule({
@@ -43,7 +46,8 @@ import { UpdateshelterDialogComponent } from './components/updateshelter-dialog/
     CatDialogComponent,
     ShelterDialogComponent,
     UpdatecatDialogComponent,
-    UpdateshelterDialogComponent
+    UpdateshelterDialogComponent,
+    FilterCatDialogComponent
     ],
   imports: [
     BrowserModule,
@@ -72,12 +76,14 @@ import { UpdateshelterDialogComponent } from './components/updateshelter-dialog/
     MatSelectModule,
     CdkTableModule,
     ReactiveFormsModule, 
-    FormsModule
+    FormsModule,
+    MatDatepickerModule,
+    MatNativeDateModule
     
   ],
   providers: [RegisterService],
   bootstrap: [AppComponent],
-  entryComponents: [CatDialogComponent, ShelterDialogComponent, UpdatecatDialogComponent, UpdateshelterDialogComponent]
+  entryComponents: [CatDialogComponent, ShelterDialogComponent, UpdatecatDialogComponent, UpdateshelterDialogComponent, FilterCatDialogComponent]
 
 })
 export class AppModule { }

@@ -1,10 +1,12 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import {FormsModule, FormGroup, FormControl,  ReactiveFormsModule, FormBuilder} from '@angular/forms';
-import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
+import { MatDialogRef, MAT_DIALOG_DATA, MatNativeDateModule   } from '@angular/material';
 import {RegisterService} from '../../services/register.service';
-import { DataOperations } from 'ng-jexia';
+import {MatDatepickerModule} from '@angular/material/datepicker';
 
 import {IShelter} from '../shelter/shelter';
+
+ 
 
 @Component({
   selector: 'app-updatecat-dialog',
@@ -12,15 +14,12 @@ import {IShelter} from '../shelter/shelter';
   styleUrls: ['./updatecat-dialog.component.css']
 })
 export class UpdatecatDialogComponent implements OnInit {
-  shelterDataset = this.dataOperations.dataset<IShelter>('shelters')
-
-public shelters = this.shelterDataset.select().execute();
-
-
+  
 catToUpdate = this.data
+currentDate = new Date();
 
 
-constructor( private dataOperations: DataOperations, private formbuilder: FormBuilder,private registerservice: RegisterService,  private dialogRef: MatDialogRef<UpdatecatDialogComponent> ,  @Inject(MAT_DIALOG_DATA) private data: string) { }
+constructor( private formbuilder: FormBuilder,private registerservice: RegisterService,  private dialogRef: MatDialogRef<UpdatecatDialogComponent> ,  @Inject(MAT_DIALOG_DATA) private data: string) { }
 
  ngOnInit() {
 
@@ -28,8 +27,9 @@ constructor( private dataOperations: DataOperations, private formbuilder: FormBu
  }
 
   onCloseConfirm(){
-    console.log("Update this cat" + JSON.stringify(this.catToUpdate))
+        console.log("Update this cat" + JSON.stringify(this.catToUpdate))
     this.dialogRef.close('Confirm');
+    
     this.registerservice.updateCat(this.catToUpdate);
 
   }

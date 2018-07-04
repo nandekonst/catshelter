@@ -30,7 +30,7 @@ export class CatDialogComponent implements OnInit {
 
  
  
-  constructor(private formbuilder: FormBuilder, private registerservice: RegisterService, private dialogRef: MatDialogRef<CatDialogComponent>, @Inject(MAT_DIALOG_DATA) private data: string) { }
+ constructor(private formbuilder: FormBuilder, private registerservice: RegisterService, private dialogRef: MatDialogRef<CatDialogComponent>, @Inject(MAT_DIALOG_DATA) private data: string) { }
 
   ngOnInit() {
 

@@ -1,6 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
 import {RegisterService} from '../../services/register.service';
+import { ICat } from 'src/app/components/cat/cat';
 
 @Component({
   selector: 'app-updateshelter-dialog',
@@ -9,7 +10,7 @@ import {RegisterService} from '../../services/register.service';
 })
 export class UpdateshelterDialogComponent implements OnInit {
 
-  shelterToUpdate = this.data
+  shelterToUpdate:string = this.data
 
 
   constructor(private registerservice: RegisterService, private dialogRef: MatDialogRef<UpdateshelterDialogComponent> ,  @Inject(MAT_DIALOG_DATA) private data: string) { }

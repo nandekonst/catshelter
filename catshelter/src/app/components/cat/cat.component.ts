@@ -9,6 +9,7 @@ import {RegisterService} from '../../services/register.service';
 import {CatDialogComponent} from '../cat-dialog/cat-dialog.component';
 import {UpdatecatDialogComponent} from '../updatecat-dialog/updatecat-dialog.component';
 import { ICat } from '../cat/cat';
+import { FilterCatDialogComponent } from 'src/app/components/filter-cat-dialog/filter-cat-dialog.component';
 
 @Component({
   selector: 'cat',
@@ -19,7 +20,7 @@ import { ICat } from '../cat/cat';
 
 export class CatComponent {
  
-  displayedColumns = ['name', 'color', 'race', 'vaccinated', 'sheltername' , 'action'];
+  displayedColumns = ['name', 'color', 'race', 'date_of_birth', 'vaccinated', 'sheltername' , 'action'];
   dialogResult = "";
   cats = this.registerService.cats;
   catsds = this.registerService.catsds;
@@ -46,10 +47,18 @@ export class CatComponent {
     return this.registerService.removeCat(id);
   }
 
+  filterOnColor(cat: ICat[]){
+    console.log("FILTEROPTIONS" + JSON.stringify(cat))
+    let dialogRef = this.dialog.open(FilterCatDialogComponent, {
+      width: '600px',
+      data: { cat }
+    })
+  }
+
   editCat(cat: ICat[]){
     let dialogRef = this.dialog.open(UpdatecatDialogComponent, {
       width: '600px',
-      data: { cat  }
+      data: { cat   }
     });
 
     dialogRef.afterClosed().subscribe(result => {
