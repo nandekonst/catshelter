@@ -16,7 +16,6 @@ import {IShelter} from '../shelter/shelter';
 export class UpdatecatDialogComponent implements OnInit {
   
 catToUpdate = this.data
-currentDate = new Date();
 
 
 constructor( private formbuilder: FormBuilder,private registerservice: RegisterService,  private dialogRef: MatDialogRef<UpdatecatDialogComponent> ,  @Inject(MAT_DIALOG_DATA) private data: string) { }
@@ -27,7 +26,7 @@ constructor( private formbuilder: FormBuilder,private registerservice: RegisterS
  }
 
   onCloseConfirm(){
-        console.log("Update this cat" + JSON.stringify(this.catToUpdate))
+    console.log("Update this cat" + JSON.stringify(this.catToUpdate))
     this.dialogRef.close('Confirm');
     
     this.registerservice.updateCat(this.catToUpdate);

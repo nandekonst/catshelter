@@ -24,10 +24,7 @@
         <mat-checkbox placeholder="Vaccinated" [(ngModel)]="catToUpdate.cat.vaccinated" name="false"  >Yes</mat-checkbox>
 
     </mat-form-field>
-    <mat-form-field class="formfield">
-      <input matInput hidden [(ngModel)]="currentDate" name="updated_at">
-
-  </mat-form-field>
+   
     
     <mat-form-field>
       <input matInput [matDatepicker]="picker" [(ngModel)]="catToUpdate.cat.date_of_birth" name="date_of_birth" placeholder="Choose a birth date">
