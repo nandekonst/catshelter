@@ -29,11 +29,12 @@ export class CatComponent {
 
   //Maybe remove this component and handle everything in the all cats view
 
-  onNotifyShowCatsView(event){
+ /* onNotifyShowCatsView(event){
     console.log("REceived event" + event)
     this.showAllCatsView = event;
     this.showFilteredCatsView = true;
-  }
+  }*/
+
   onNotifyFilteredCats(event){
     console.log("REceived filter event" + event)
 

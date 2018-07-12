@@ -10,6 +10,8 @@ import {UpdatecatDialogComponent} from '../updatecat-dialog/updatecat-dialog.com
 import { ICat } from '../../interfaces/cat';
 import { FilterCatDialogComponent } from 'src/app/components/filter-cat-dialog/filter-cat-dialog.component';
 import { Output,EventEmitter } from '@angular/core';
+import { from } from 'rxjs';
+import { Observable } from 'rxjs/internal/Observable';
 
 @Component({
   selector: 'all-cats-view',
@@ -20,6 +22,11 @@ export class AllCatsViewComponent implements OnInit {
   //An output even to emit an boolean event from the child component to a parent.
   @Output() notifyAllCats: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() notifyFilteredCats: EventEmitter<any> = new EventEmitter<any>();
+  filteredCats: Observable<ICat[]>;
+  sortedCats: any[];
+  isFilteredResult: boolean = false;
+  isAllResult: boolean = true;
+  isSortedResult: boolean = false;
   
   //These are the columns to display in the Material Data Table
   displayedColumns = ['name', 'color', 'race', 'date_of_birth', 'vaccinated', 'sheltername' , 'action'];
@@ -27,7 +34,7 @@ export class AllCatsViewComponent implements OnInit {
   
   //This is our Jexia cats related dataset cats/shelters from our service in order to
   //display all cats and the shelter they belong to
-  cats = this.dataService.cats;
+  cats:Observable<ICat[]> = this.dataService.cats;
 
   constructor(private dataService: DataService, private dataOperations: DataOperations, private dialog: MatDialog) { }
 
@@ -56,7 +63,7 @@ export class AllCatsViewComponent implements OnInit {
 
   //Opens the filterDialog to set some filter parameters to filter the cats dataset
   //Its called when somebody hits the filters button
-  filterOnColor(cat: ICat[]){
+  openFilterDialog(cat: ICat[]){
     let dialogRef = this.dialog.open(FilterCatDialogComponent, {
       width: '600px',
       data: { cat }
@@ -64,28 +71,36 @@ export class AllCatsViewComponent implements OnInit {
 
     let sub = dialogRef.componentInstance.onConfirmShowAllCats.subscribe((data) => {
       console.log("DATA" + data)
-      this.notifyAllCats.emit(data)
     
             
     })
 
     let sub2 = dialogRef.componentInstance.filteredCats.subscribe((data) => {
-      console.log("DATA2" + data)
-      //get to the filtered data here.
+      this.filteredCats = data;
+      this.isAllResult = false;
+      this.isFilteredResult = true;
+      console.log("DATA2" + JSON.stringify(this.filteredCats))
+
+
     })
   }
 
   sortAscending(){
-    console.log("sort asc");
     this.dataService.sortAscending().then((records) => {
       console.log("SORTASC RECORDS" + JSON.stringify(records))
+      this.sortedCats = records
+      this.isSortedResult = true;
+      this.isAllResult = false;
+      this.isFilteredResult = false;
     }).catch((error) => {
       console.log(error)
     })
   }
 
-  sortDesc(){
-    console.log("sort desc")
+  sortDescending(){
+    this.dataService.sortDescending().then((records) => {
+      console.log("SORTDESC Records" + JSON.stringify(records));
+    })
   }
 
 

@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, AfterViewInit } from '@angular/core';
 import {MatDialogModule, MatDialog, MatDialogRef} from "@angular/material/dialog";
-import { FilterCatDialogComponent } from '../filter-cat-dialog/filter-cat-dialog.component';
+import {AllCatsViewComponent  } from '../all-cats-view/all-cats-view.component';
 import { Output,EventEmitter } from '@angular/core';
 
 @Component({
@@ -9,11 +9,12 @@ import { Output,EventEmitter } from '@angular/core';
   styleUrls: ['./filtered-cats-view.component.css']
 })
 export class FilteredCatsViewComponent implements OnInit {
+  @ViewChild(AllCatsViewComponent) private allCatsComponent: AllCatsViewComponent;
 
   constructor(private dialog: MatDialog) { }
 
   ngOnInit() {
-    console.log("Instantiated FilteredCatsViewComponent")
+    console.log("Instantiated FilteredCatsViewComponent" + this.allCatsComponent.filteredCats)
   }
 
   

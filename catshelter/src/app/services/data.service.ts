@@ -4,7 +4,7 @@ import { IShelter} from '../interfaces/shelter';
 import { DataOperations } from 'ng-jexia';
 import { field } from 'jexia-sdk-js/api/dataops/filteringApi';
 import { getCurrentDebugContext } from '@angular/core/src/view/services';
-import { Observable } from 'rxjs';
+import { Observable, from } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +15,8 @@ export class DataService {
   catDataset = this.dataOperations.dataset<ICat>('cats');
   sortAsc
   public catsds = this.catDataset.select().execute();
-  public cats = this.catDataset.select().relation(this.shelterDataset).execute();
+  public _cats:   Promise<ICat[]> = this.catDataset.select().relation(this.shelterDataset).execute();
+  public cats: Observable<ICat[]> = from(this.catDataset.select().relation(this.shelterDataset).execute());
   public shelters = this.shelterDataset.select().execute();
   
   constructor(private dataOperations: DataOperations) { }
@@ -55,17 +56,7 @@ export class DataService {
     let filterColor = field("color").isEqualTo(cat.color);
     let filterRace = field("race").isEqualTo(cat.race);
     let filterVaccinated = field("vaccinated").isEqualTo(cat.vaccinated);
-
     let filterAllConditions =  field("color").isEqualTo(cat.color).and(field("race").isEqualTo(cat.race).and(field("vaccinated").isEqualTo(cat.vaccinated)))
-
-
-    /*if(cat.color){
-      return this.catDataset.select().where(filterColor).execute();
-    } else if (cat.race){
-      return this.catDataset.select().where(filterRace).execute();
-    } else if (cat.vaccinated) {
-      return this.catDataset.select().where(filterVaccinated).execute();
-    }*/
 
     if(cat.color && cat.race && cat.vaccinated){
       return this.catDataset.select().where(filterAllConditions).execute();
@@ -76,18 +67,16 @@ export class DataService {
     } else if (cat.vaccinated){
       return this.catDataset.select().where(filterVaccinated).execute();
     }
-    
-
-
-
-
-   
 
   }
 
   sortAscending():Promise<Array<any>>{
     return this.catDataset.select().sortAsc("name").execute();
 
+  }
+
+  sortDescending():Promise<Array<any>>{
+    return this.catDataset.select().sortDesc("name").execute();
   }
 
   updateShelter(shelter:any){

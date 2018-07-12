@@ -47,16 +47,15 @@ filterRecords:any
 
     this.dataservice.filterCatColorRace(this.catfilterform.value).then(records => {
       console.log("RECORDS" + JSON.stringify(records))
-
+      this.filteredCats.emit(records);
 
       //this.getFilteredRecords(records)
 
     }).catch((error) => {
-     console.log("There was no filter options selected")
+     console.log("No filter options were selected")
     })
 
     this.onConfirmShowAllCats.emit(false);
-    this.filteredCats.emit("Hello");
 
     
   }
