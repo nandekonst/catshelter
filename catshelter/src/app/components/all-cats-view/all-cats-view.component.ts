@@ -77,8 +77,10 @@ export class AllCatsViewComponent implements OnInit {
 
   sortAscending(){
     console.log("sort asc");
-    this.dataService.sortAsc().then((records) => {
+    this.dataService.sortAscending().then((records) => {
       console.log("SORTASC RECORDS" + JSON.stringify(records))
+    }).catch((error) => {
+      console.log(error)
     })
   }
 

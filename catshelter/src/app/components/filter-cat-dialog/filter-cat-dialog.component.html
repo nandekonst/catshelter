@@ -24,7 +24,7 @@
             </mat-form-field>
             <mat-form-field class="formfield">
                 <input matInput>
-                <mat-checkbox placeholder="Vaccinated" value="false" formControlName="vaccinated">Yes</mat-checkbox>
+                <mat-checkbox placeholder="Vaccinated" [checked]="isChecked" value="true" formControlName="vaccinated">Yes</mat-checkbox>
         
             </mat-form-field>
         </div>

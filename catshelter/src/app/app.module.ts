@@ -56,9 +56,9 @@ import { FilteredCatsViewComponent } from './components/filtered-cats-view/filte
   imports: [
     BrowserModule,
     NgJexiaModule.initialize({
-      projectID: 'xxx',
-      key: 'xxx',
-      secret: 'xxx',
+      projectID: '69d260b4-e887-43f8-9096-586f9ddd57be',
+      key: '5d43c06d-974d-46a8-8299-164dc4e6a7f0',
+      secret: 'jNmyFzXInsyE3RZB',
       providers: [
         DataOperationsModule,
       ],

@@ -48,15 +48,41 @@ export class DataService {
 
   filterCatColorRace(cat: any):Promise<Array<any>>{
     console.log("COLOR" + cat.color)
+    console.log("RACE" + cat.race)
+    console.log("VACINNATED" + cat.vaccinated)
     let vaccinated = cat.vaccinated;
     let vaccinatedasString = vaccinated? "true":"false";
     let filterColor = field("color").isEqualTo(cat.color);
     let filterRace = field("race").isEqualTo(cat.race);
     let filterVaccinated = field("vaccinated").isEqualTo(cat.vaccinated);
 
-   // let combinedCriteria = filterColor.or(filterRace).or(filterVaccinated)
-    let flatFilter = field("color").isEqualTo(cat.color).or(field("race").isEqualTo(cat.race).or(field("vaccinated").isEqualTo(vaccinatedasString)))
-    return this.catDataset.select().where(filterColor).execute();
+    let filterAllConditions =  field("color").isEqualTo(cat.color).and(field("race").isEqualTo(cat.race).and(field("vaccinated").isEqualTo(cat.vaccinated)))
+
+
+    /*if(cat.color){
+      return this.catDataset.select().where(filterColor).execute();
+    } else if (cat.race){
+      return this.catDataset.select().where(filterRace).execute();
+    } else if (cat.vaccinated) {
+      return this.catDataset.select().where(filterVaccinated).execute();
+    }*/
+
+    if(cat.color && cat.race && cat.vaccinated){
+      return this.catDataset.select().where(filterAllConditions).execute();
+    } else if(cat.color){
+      return this.catDataset.select().where(filterColor).execute();
+    } else if(cat.race){
+      return this.catDataset.select().where(filterRace).execute();
+    } else if (cat.vaccinated){
+      return this.catDataset.select().where(filterVaccinated).execute();
+    }
+    
+
+
+
+
+   
+
   }
 
   sortAscending():Promise<Array<any>>{

@@ -24,6 +24,7 @@ filterRecords:any
   color: FormControl;
   race: FormControl;
   vaccinated: FormControl;
+  isChecked: boolean = false;
 
 
   constructor(private formbuilder: FormBuilder, private dataservice: DataService, private dialogRef: MatDialogRef<FilterCatDialogComponent>, @Inject(MAT_DIALOG_DATA) private data: string) { }
@@ -50,6 +51,8 @@ filterRecords:any
 
       //this.getFilteredRecords(records)
 
+    }).catch((error) => {
+     console.log("There was no filter options selected")
     })
 
     this.onConfirmShowAllCats.emit(false);
