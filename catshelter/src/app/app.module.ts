@@ -30,10 +30,12 @@ import { CatComponent } from './components/cat/cat.component';
 import { NgJexiaModule, DataOperationsModule } from 'ng-jexia';
 import { CatDialogComponent } from './components/cat-dialog/cat-dialog.component';
 import {ShelterDialogComponent} from './components/shelter-dialog/shelter-dialog.component';
-import {RegisterService} from './services/register.service';
+import {DataService} from './services/data.service';
 import { UpdatecatDialogComponent } from './components/updatecat-dialog/updatecat-dialog.component';
 import { UpdateshelterDialogComponent } from './components/updateshelter-dialog/updateshelter-dialog.component';
 import { FilterCatDialogComponent } from './components/filter-cat-dialog/filter-cat-dialog.component';
+import { AllCatsViewComponent } from './components/all-cats-view/all-cats-view.component';
+import { FilteredCatsViewComponent } from './components/filtered-cats-view/filtered-cats-view.component';
 
 
 @NgModule({
@@ -47,14 +49,16 @@ import { FilterCatDialogComponent } from './components/filter-cat-dialog/filter-
     ShelterDialogComponent,
     UpdatecatDialogComponent,
     UpdateshelterDialogComponent,
-    FilterCatDialogComponent
+    FilterCatDialogComponent,
+    AllCatsViewComponent,
+    FilteredCatsViewComponent
     ],
   imports: [
     BrowserModule,
     NgJexiaModule.initialize({
-      projectID: '69d260b4-e887-43f8-9096-586f9ddd57be',
-      key: '5d43c06d-974d-46a8-8299-164dc4e6a7f0',
-      secret: 'jNmyFzXInsyE3RZB',
+      projectID: 'xxx',
+      key: 'xxx',
+      secret: 'xxx',
       providers: [
         DataOperationsModule,
       ],
@@ -80,10 +84,11 @@ import { FilterCatDialogComponent } from './components/filter-cat-dialog/filter-
     MatDatepickerModule,
     MatNativeDateModule
     
+    
   ],
-  providers: [RegisterService],
+  providers: [DataService],
   bootstrap: [AppComponent],
-  entryComponents: [CatDialogComponent, ShelterDialogComponent, UpdatecatDialogComponent, UpdateshelterDialogComponent, FilterCatDialogComponent]
+  entryComponents: [AllCatsViewComponent,CatDialogComponent, ShelterDialogComponent, UpdatecatDialogComponent, UpdateshelterDialogComponent, FilterCatDialogComponent]
 
 })
 export class AppModule { }

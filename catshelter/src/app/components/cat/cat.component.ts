@@ -1,15 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import {MatTableDataSource} from '@angular/material';
-import {MatFormFieldModule} from '@angular/material/form-field';
-import { DataOperations } from 'ng-jexia';
-import {MatDialog} from "@angular/material";
-import {CdkTableModule} from '@angular/cdk/table';
+import { Component, OnInit, ViewChild } from '@angular/core';
+import {AllCatsViewComponent} from '../all-cats-view/all-cats-view.component';
+import {FilteredCatsViewComponent} from '../filtered-cats-view/filtered-cats-view.component';
 
-import {RegisterService} from '../../services/register.service';
-import {CatDialogComponent} from '../cat-dialog/cat-dialog.component';
-import {UpdatecatDialogComponent} from '../updatecat-dialog/updatecat-dialog.component';
-import { ICat } from '../cat/cat';
-import { FilterCatDialogComponent } from 'src/app/components/filter-cat-dialog/filter-cat-dialog.component';
 
 @Component({
   selector: 'cat',
@@ -17,57 +9,44 @@ import { FilterCatDialogComponent } from 'src/app/components/filter-cat-dialog/f
   styleUrls: ['./cat.component.css']
 })
 
-
+//In the Cat Component we display all the different child views. 
 export class CatComponent {
- 
-  displayedColumns = ['name', 'color', 'race', 'date_of_birth', 'vaccinated', 'sheltername' , 'action'];
-  dialogResult = "";
-  cats = this.registerService.cats;
-  catsds = this.registerService.catsds;
+  
+  //This property makes sure we set showAllCatsView property default to true
+  public showAllCatsView: boolean = true;
 
-  constructor(private registerService: RegisterService, private dataOperations: DataOperations, private dialog: MatDialog) { }
+  //This property makes sure we set showFilteredCatsView default to false
+  public showFilteredCatsView: boolean = false;
+
+  constructor() { }
   
   ngOnInit() {
   }
 
-  openDialog(){
-    let dialogRef = this.dialog.open(CatDialogComponent, {
-      width: '600px',
-      data: {}
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log("Dialog closed:" + result);
-      this.dialogResult = result;
-    })
-  }
-
+  //When we are notified by an output property and receive an event we set showAllCatsView
+  //to the value of the event. 
   
-  deleteCat(id: string){
-    return this.registerService.removeCat(id);
+
+  //Maybe remove this component and handle everything in the all cats view
+
+  onNotifyShowCatsView(event){
+    console.log("REceived event" + event)
+    this.showAllCatsView = event;
+    this.showFilteredCatsView = true;
   }
-
-  filterOnColor(cat: ICat[]){
-    console.log("FILTEROPTIONS" + JSON.stringify(cat))
-    let dialogRef = this.dialog.open(FilterCatDialogComponent, {
-      width: '600px',
-      data: { cat }
-    })
-  }
-
-  editCat(cat: ICat[]){
-    let dialogRef = this.dialog.open(UpdatecatDialogComponent, {
-      width: '600px',
-      data: { cat   }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log("Dialog cloased:" + result);
-      this.dialogResult = result;
-    })
+  onNotifyFilteredCats(event){
+    console.log("REceived filter event" + event)
 
 
   }
+
+
+
+
+
+ 
+
+ 
 }
 
 

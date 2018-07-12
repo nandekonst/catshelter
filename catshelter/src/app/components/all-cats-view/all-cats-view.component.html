@@ -1,0 +1,57 @@
+
+<div class="example-container mat-elevation-z8">
+  <div class="example-header">
+    <div class="action-button">
+      <button mat-raised-button color="primary" (click)="openDialog()"  color="primary">
+          <mat-icon aria-label="create">add_box</mat-icon> Add Cat
+      </button>
+    </div>
+    <div class="action-button">
+      <button mat-raised-button color="primary" (click)="filterOnColor()"  color="primary">
+          <mat-icon aria-label="create">add_box</mat-icon> Filters
+      </button>
+    </div>
+    <div class="action-button">
+        <button mat-raised-button color="primary" (click)="sortAsc()"  color="primary">
+            <mat-icon aria-label="create">add_box</mat-icon> sort Asc
+        </button>
+    </div>
+    <div class="action-button">
+        <button mat-raised-button color="primary" (click)="sortDesc()"  color="primary">
+            <mat-icon aria-label="create">add_box</mat-icon> sort Desc
+        </button>
+    </div>
+
+  <table class="table">
+      <thead>
+          <tr>
+            <th scope="col">Name</th>
+            <th scope="col">Color</th>
+            <th scope="col">Race</th>
+            <th scope="col">Date of birth</th>
+            <th scope="col">Vaccinated</th>
+            <th scope="col">Shelter Name</th>
+            <th scope="col">Action</th>
+          </tr>
+      </thead>
+      <tbody>
+
+      <tr *ngFor="let cat of cats | async">
+        <td>{{cat.name}}</td>
+        <td>{{cat.color}}</td>
+        <td>{{cat.race}}</td>
+        <td>{{cat.date_of_birth}}</td>
+        <td>{{cat.vaccinated}}</td>
+        <td *ngFor="let shelter of cat.shelters">{{shelter.name}}</td>
+
+
+        <td>
+            <button mat-raised-button color="primary" (click)="editCat(cat)">Edit</button>
+            <button mat-raised-button color="warn" (click)="deleteCat(cat.id)">Delete</button>
+
+        </td>
+
+      </tr>
+    </tbody>
+  </table>
+</div>

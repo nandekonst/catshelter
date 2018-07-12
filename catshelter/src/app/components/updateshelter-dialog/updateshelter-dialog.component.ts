@@ -1,7 +1,7 @@
 import { Component, OnInit, Inject } from '@angular/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material';
-import {RegisterService} from '../../services/register.service';
-import { ICat } from 'src/app/components/cat/cat';
+import {DataService} from '../../services/data.service';
+import { ICat } from '../../interfaces/cat';
 
 @Component({
   selector: 'app-updateshelter-dialog',
@@ -13,7 +13,7 @@ export class UpdateshelterDialogComponent implements OnInit {
   shelterToUpdate:string = this.data
 
 
-  constructor(private registerservice: RegisterService, private dialogRef: MatDialogRef<UpdateshelterDialogComponent> ,  @Inject(MAT_DIALOG_DATA) private data: string) { }
+  constructor(private dataservice: DataService, private dialogRef: MatDialogRef<UpdateshelterDialogComponent> ,  @Inject(MAT_DIALOG_DATA) private data: string) { }
 
   ngOnInit() {
   }
@@ -21,17 +21,12 @@ export class UpdateshelterDialogComponent implements OnInit {
   onCloseConfirm(){
     console.log("Update this shelter" + JSON.stringify(this.shelterToUpdate))
     this.dialogRef.close('Confirm');
-    this.registerservice.updateShelter(this.shelterToUpdate);
-
+    this.dataservice.updateShelter(this.shelterToUpdate);
   }
 
   onCloseCancel(){
     this.dialogRef.close('Cancel');
-
   }
 
-  onSubmit(){
-    
-  }
 
 }
