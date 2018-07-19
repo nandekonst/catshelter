@@ -63,7 +63,6 @@
           <th scope="col">Race</th>
           <th scope="col">Date of birth</th>
           <th scope="col">Vaccinated</th>
-          <th scope="col">Shelter Name</th>
           <th scope="col">Action</th>
         </tr>
     </thead>
@@ -94,13 +93,12 @@
           <th scope="col">Race</th>
           <th scope="col">Date of birth</th>
           <th scope="col">Vaccinated</th>
-          <th scope="col">Shelter Name</th>
           <th scope="col">Action</th>
         </tr>
     </thead>
     <tbody>
 
-    <tr *ngFor="let cat of sortedCats ">
+    <tr *ngFor="let cat of sortedCatsAsc ">
       <td>{{cat.name }}</td>
       <td>{{cat.color}}</td>
       <td>{{cat.race}}</td>
@@ -117,4 +115,35 @@
     </tr>
   </tbody>
 </table>
+<table class="table" *ngIf="isSortedDesc">
+    <thead>
+        <tr>
+          <th scope="col">Name</th>
+          <th scope="col">Color</th>
+          <th scope="col">Race</th>
+          <th scope="col">Date of birth</th>
+          <th scope="col">Vaccinated</th>
+          <th scope="col">Action</th>
+        </tr>
+    </thead>
+    <tbody>
+
+    <tr *ngFor="let cat of sortedCatsDesc">
+      <td>{{cat.name }}</td>
+      <td>{{cat.color}}</td>
+      <td>{{cat.race}}</td>
+      <td>{{cat.date_of_birth}}</td>
+      <td>{{cat.vaccinated}}</td>
+
+
+      <td>
+          <button mat-raised-button color="primary" (click)="editCat(cat)">Edit</button>
+          <button mat-raised-button color="warn" (click)="deleteCat(cat.id)">Delete</button>
+
+      </td>
+
+    </tr>
+  </tbody>
+</table>
+</div>
 </div>

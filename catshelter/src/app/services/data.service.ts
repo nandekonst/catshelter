@@ -5,18 +5,19 @@ import { DataOperations } from 'ng-jexia';
 import { field } from 'jexia-sdk-js/api/dataops/filteringApi';
 import { getCurrentDebugContext } from '@angular/core/src/view/services';
 import { Observable, from } from 'rxjs';
+import { Dataset } from 'jexia-sdk-js/api/dataops/dataset';
 
 @Injectable({
   providedIn: 'root'
 })
 export class DataService {
 
-  shelterDataset = this.dataOperations.dataset<IShelter>('shelters')
-  catDataset = this.dataOperations.dataset<ICat>('cats');
+  shelterDataset: Dataset<IShelter> = this.dataOperations.dataset<IShelter>('shelters')
+  catDataset: Dataset<ICat> = this.dataOperations.dataset<ICat>('cats');
   sortAsc
   public catsds = this.catDataset.select().execute();
-  public _cats:   Promise<ICat[]> = this.catDataset.select().relation(this.shelterDataset).execute();
-  public cats: Observable<ICat[]> = from(this.catDataset.select().relation(this.shelterDataset).execute());
+  public cats:   Promise<ICat[]> = this.catDataset.select().relation(this.shelterDataset).execute();
+  //public cats: Observable<ICat[]> = from(this.catDataset.select().relation(this.shelterDataset).execute());
   public shelters = this.shelterDataset.select().execute();
   
   constructor(private dataOperations: DataOperations) { }

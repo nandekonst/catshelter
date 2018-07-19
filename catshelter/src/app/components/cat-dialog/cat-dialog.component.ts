@@ -27,8 +27,6 @@ export class CatDialogComponent implements OnInit {
  shelters_id: FormControl;
  shelters = this.dataservice.shelters;
 
-
- 
  
  constructor(private formbuilder: FormBuilder, private dataservice: DataService, private dialogRef: MatDialogRef<CatDialogComponent>, @Inject(MAT_DIALOG_DATA) private data: string) { }
 

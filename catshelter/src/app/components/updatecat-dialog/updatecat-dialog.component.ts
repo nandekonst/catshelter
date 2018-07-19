@@ -22,7 +22,6 @@ constructor( private formbuilder: FormBuilder,private dataservice: DataService, 
 
  ngOnInit() {
 
-   
  }
 
  onCloseConfirm(){

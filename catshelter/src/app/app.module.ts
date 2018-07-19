@@ -26,7 +26,6 @@ import {CdkTableModule} from '@angular/cdk/table';
 
 import { OverviewComponent } from './components/overview/overview.component';
 import { ShelterComponent } from './components/shelter/shelter.component';
-import { CatComponent } from './components/cat/cat.component';
 import { NgJexiaModule, DataOperationsModule } from 'ng-jexia';
 import { CatDialogComponent } from './components/cat-dialog/cat-dialog.component';
 import {ShelterDialogComponent} from './components/shelter-dialog/shelter-dialog.component';
@@ -44,7 +43,6 @@ import { FilteredCatsViewComponent } from './components/filtered-cats-view/filte
     NavbarComponent,
     OverviewComponent,
     ShelterComponent,
-    CatComponent,
     CatDialogComponent,
     ShelterDialogComponent,
     UpdatecatDialogComponent,

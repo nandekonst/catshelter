@@ -23,18 +23,19 @@ export class AllCatsViewComponent implements OnInit {
   @Output() notifyAllCats: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() notifyFilteredCats: EventEmitter<any> = new EventEmitter<any>();
   filteredCats: Observable<ICat[]>;
-  sortedCats: any[];
+  sortedCatsAsc: any[];
+  sortedCatsDesc: any[];
   isFilteredResult: boolean = false;
   isAllResult: boolean = true;
   isSortedResult: boolean = false;
+  isSortedDesc: boolean = false;
   
   //These are the columns to display in the Material Data Table
-  displayedColumns = ['name', 'color', 'race', 'date_of_birth', 'vaccinated', 'sheltername' , 'action'];
   dialogResult = "";
   
   //This is our Jexia cats related dataset cats/shelters from our service in order to
   //display all cats and the shelter they belong to
-  cats:Observable<ICat[]> = this.dataService.cats;
+  cats:Promise<ICat[]> = this.dataService.cats;
 
   constructor(private dataService: DataService, private dataOperations: DataOperations, private dialog: MatDialog) { }
 
@@ -48,8 +49,6 @@ export class AllCatsViewComponent implements OnInit {
       width: '600px',
       data: {}
     });
-    
-
     dialogRef.afterClosed().subscribe(result => {
       console.log("Dialog closed:" + result);
       this.dialogResult = result;
@@ -74,32 +73,39 @@ export class AllCatsViewComponent implements OnInit {
     
             
     })
-
+    //subscribe to the filteredCats property that holds the filtered records
     let sub2 = dialogRef.componentInstance.filteredCats.subscribe((data) => {
       this.filteredCats = data;
       this.isAllResult = false;
       this.isFilteredResult = true;
-      console.log("DATA2" + JSON.stringify(this.filteredCats))
+      this.isSortedResult = false;
+      this.isSortedDesc = false;
 
 
     })
   }
-
+  //sort the records ascending and load the sort ascending view 
   sortAscending(){
     this.dataService.sortAscending().then((records) => {
-      console.log("SORTASC RECORDS" + JSON.stringify(records))
-      this.sortedCats = records
+      this.sortedCatsAsc = records
       this.isSortedResult = true;
+      this.isSortedDesc = false;
       this.isAllResult = false;
       this.isFilteredResult = false;
     }).catch((error) => {
       console.log(error)
     })
   }
-
+  //sort the records descending and load the sort descending view
   sortDescending(){
     this.dataService.sortDescending().then((records) => {
-      console.log("SORTDESC Records" + JSON.stringify(records));
+      this.sortedCatsDesc = records;
+      this.isSortedResult = false;
+      this.isAllResult = false;
+      this.isFilteredResult = false;
+      this.isSortedDesc = true;
+      this.isSortedResult = false;
+    
     })
   }
 
