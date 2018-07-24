@@ -34,7 +34,6 @@ import { UpdatecatDialogComponent } from './components/updatecat-dialog/updateca
 import { UpdateshelterDialogComponent } from './components/updateshelter-dialog/updateshelter-dialog.component';
 import { FilterCatDialogComponent } from './components/filter-cat-dialog/filter-cat-dialog.component';
 import { AllCatsViewComponent } from './components/all-cats-view/all-cats-view.component';
-import { FilteredCatsViewComponent } from './components/filtered-cats-view/filtered-cats-view.component';
 
 
 @NgModule({
@@ -48,9 +47,8 @@ import { FilteredCatsViewComponent } from './components/filtered-cats-view/filte
     UpdatecatDialogComponent,
     UpdateshelterDialogComponent,
     FilterCatDialogComponent,
-    AllCatsViewComponent,
-    FilteredCatsViewComponent
-    ],
+    AllCatsViewComponent
+  ],
   imports: [
     BrowserModule,
     NgJexiaModule.initialize({

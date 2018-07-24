@@ -25,7 +25,6 @@ export class DataService {
   addCat(cat: ICat[]){
     console.log("THE CAT" + JSON.stringify(cat))
     this.catDataset.insert(cat).execute();
-    
   }
 
   addShelter(shelter: IShelter[]){
@@ -34,13 +33,10 @@ export class DataService {
   
   removeShelter(id: string){
     this.shelterDataset.delete().where(field("id").isEqualTo(id)).execute();
-    console.log("Delete shelter" + id); 
   }
 
   removeCat(id: string){
     this.catDataset.delete().where(field("id").isEqualTo(id)).execute();
-    console.log("Delete cat" + id);
-
   }
 
   updateCat(cat: any){
@@ -48,7 +44,7 @@ export class DataService {
     this.catDataset.update({"id":cat.cat.id, "name":cat.cat.name,"color":cat.cat.color, "updated_at": cat.updated_at,"date_of_birth": cat.cat.date_of_birth, "race":cat.cat.race,"vaccinated": cat.cat.vaccinated }).where(filter).execute();
   }
 
-  filterCatColorRace(cat: any):Promise<Array<any>>{
+  filterCats(cat: any):Promise<Array<any>>{
     console.log("COLOR" + cat.color)
     console.log("RACE" + cat.race)
     console.log("VACINNATED" + cat.vaccinated)
@@ -67,13 +63,12 @@ export class DataService {
       return this.catDataset.select().where(filterRace).execute();
     } else if (cat.vaccinated){
       return this.catDataset.select().where(filterVaccinated).execute();
-    }
+    } 
 
   }
 
   sortAscending():Promise<Array<any>>{
     return this.catDataset.select().sortAsc("name").execute();
-
   }
 
   sortDescending():Promise<Array<any>>{

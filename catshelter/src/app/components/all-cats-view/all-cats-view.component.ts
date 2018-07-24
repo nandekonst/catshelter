@@ -54,6 +54,14 @@ export class AllCatsViewComponent implements OnInit {
       this.dialogResult = result;
     })
   }
+  
+  editCat(cat: ICat[]){
+    let dialogRef = this.dialog.open(UpdatecatDialogComponent, {
+      width: '600px',
+      data: { cat }
+    });
+
+  }
 
   //Deletes the cat from the Jexia dataset when the delete button is clicked.
   deleteCat(id: string){
@@ -69,9 +77,7 @@ export class AllCatsViewComponent implements OnInit {
     })
 
     let sub = dialogRef.componentInstance.onConfirmShowAllCats.subscribe((data) => {
-      console.log("DATA" + data)
-    
-            
+      console.log("DATA" + data)        
     })
     //subscribe to the filteredCats property that holds the filtered records
     let sub2 = dialogRef.componentInstance.filteredCats.subscribe((data) => {
@@ -80,8 +86,6 @@ export class AllCatsViewComponent implements OnInit {
       this.isFilteredResult = true;
       this.isSortedResult = false;
       this.isSortedDesc = false;
-
-
     })
   }
   //sort the records ascending and load the sort ascending view 
@@ -105,27 +109,11 @@ export class AllCatsViewComponent implements OnInit {
       this.isFilteredResult = false;
       this.isSortedDesc = true;
       this.isSortedResult = false;
-    
     })
   }
 
-
   //Opens the UpdatecatDialogComponent in order to edit a cat. Expects a Cats interface
   //which is filled in the UpdateCatDialogComponent
-  editCat(cat: ICat[]){
-    let dialogRef = this.dialog.open(UpdatecatDialogComponent, {
-      width: '600px',
-      data: { cat   }
-    });
-
-    dialogRef.afterClosed().subscribe(result => {
-      console.log("Dialog closed:" + result);
-      this.dialogResult = result;
-    })
-
-
- }
-
 
 
 }
