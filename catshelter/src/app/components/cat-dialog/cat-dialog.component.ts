@@ -10,6 +10,10 @@ import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSelectModule} from '@angular/material/select';
 import {IShelter} from '../../interfaces/shelter';
+import {Color} from '../../interfaces/color';
+import {Race} from '../../interfaces/race';
+import {MatDatepickerModule} from '@angular/material/datepicker';
+
 
 @Component({
   selector: 'cat-dialog',
@@ -22,10 +26,27 @@ export class CatDialogComponent implements OnInit {
  name: FormControl;
  color: FormControl;
  race: FormControl;
+ date_of_birth: FormControl;
  vaccinated: FormControl;
  sheltername: FormControl;
  shelters_id: FormControl;
  shelters = this.dataservice.shelters;
+
+ colors: Color[] = [
+  {value: "black", viewValue: "Black"},
+  {value: "white", viewValue: "White"},
+  {value: "grey", viewValue: "Grey"},
+  {value: "red", viewValue: "Red"}
+ ]
+
+ races: Race[] = [
+   {value: "maine coon", viewValue: "Maine Coon"},
+   {value: "bengal", viewValue: "Bengal"},
+   {value: "siamese", viewValue: "Siamese"},
+   {value: "european shorthair", viewValue: "European Shorthai"},
+
+ ]
+ 
 
  
  constructor(private formbuilder: FormBuilder, private dataservice: DataService, private dialogRef: MatDialogRef<CatDialogComponent>, @Inject(MAT_DIALOG_DATA) private data: string) { }
@@ -37,6 +58,7 @@ export class CatDialogComponent implements OnInit {
       name: this.name,
       color:this.color,
       race:this.race,
+      date_of_birth:this.date_of_birth,
       vaccinated: this.vaccinated,
       shelters_id: this.shelters_id,
     })

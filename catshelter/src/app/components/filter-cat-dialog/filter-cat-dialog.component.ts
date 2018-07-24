@@ -49,8 +49,6 @@ filterRecords:any
       console.log("RECORDS" + JSON.stringify(records))
       this.filteredCats.emit(records);
 
-      //this.getFilteredRecords(records)
-
     }).catch((error) => {
      console.log("No filter options were selected")
     })

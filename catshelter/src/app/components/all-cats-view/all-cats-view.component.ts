@@ -79,6 +79,7 @@ export class AllCatsViewComponent implements OnInit {
     let sub = dialogRef.componentInstance.onConfirmShowAllCats.subscribe((data) => {
       console.log("DATA" + data)        
     })
+    
     //subscribe to the filteredCats property that holds the filtered records
     let sub2 = dialogRef.componentInstance.filteredCats.subscribe((data) => {
       this.filteredCats = data;

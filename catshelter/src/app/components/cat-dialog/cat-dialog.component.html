@@ -5,17 +5,27 @@
   <mat-dialog-content>
     <br>
   <div class="form-container">
-
     <mat-form-field class="formfield">
         <input type="text" matInput placeholder="name" formControlName="name" class="form-control">
     </mat-form-field>
-
     <mat-form-field class="formfield">
-        <input type="text" matInput placeholder="color" formControlName="color" class="form-control">
+       <mat-select placeholder="Choose a color" matInput formControlName="color">
+        <mat-option *ngFor="let color of colors" [value]="color.value">
+          {{color.viewValue}}
+        </mat-option>
+      </mat-select>
     </mat-form-field>
-
     <mat-form-field class="formfield">
-        <input type="text" matInput placeholder="race" formControlName="race" class="form-control">
+        <mat-select placeholder="Choose a race" matInput formControlName="race">
+            <mat-option *ngFor="let race of races" [value]="race.value">
+                {{race.viewValue}}
+            </mat-option>
+        </mat-select>
+    </mat-form-field>
+    <mat-form-field>
+        <input matInput [matDatepicker]="picker" formControlName="date_of_birth" placeholder="Choose a birth date">
+        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+        <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
 
     <mat-form-field class="formfield">
@@ -25,7 +35,6 @@
         </mat-select>
 
     </mat-form-field>
-
     
     <mat-form-field class="formfield">
         Vaccinated?
