@@ -5,8 +5,9 @@
   <mat-dialog-content >
     <br>
   <div class="form-container" >
+
   
-    <mat-form-field class="formfield">
+   <mat-form-field class="formfield">
         <input type="text"  matInput placeholder="name" [(ngModel)]="catToUpdate.cat.name" name="name" [value]="catToUpdate.cat.name" class="form-control">
     </mat-form-field>
 
@@ -31,7 +32,7 @@
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>
-  </div>
+  </div> 
 
   </mat-dialog-content>
   <mat-dialog-actions>

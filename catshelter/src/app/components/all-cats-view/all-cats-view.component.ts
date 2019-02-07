@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import {MatTableDataSource} from '@angular/material';
 import {MatFormFieldModule} from '@angular/material/form-field';
-import { DataOperations } from 'ng-jexia';
+import { DataOperations } from '@jexia/ng-jexia';
 import {MatDialogModule, MatDialog, MatDialogRef} from "@angular/material/dialog";
 import {CdkTableModule} from '@angular/cdk/table';
 import {DataService} from '../../services/data.service';
@@ -12,6 +12,7 @@ import { FilterCatDialogComponent } from 'src/app/components/filter-cat-dialog/f
 import { Output,EventEmitter } from '@angular/core';
 import { from } from 'rxjs';
 import { Observable } from 'rxjs/internal/Observable';
+import {MatSnackBar} from '@angular/material';
 
 @Component({
   selector: 'all-cats-view',
@@ -37,14 +38,14 @@ export class AllCatsViewComponent implements OnInit {
   //display all cats and the shelter they belong to
   cats:Promise<ICat[]> = this.dataService.cats;
 
-  constructor(private dataService: DataService, private dataOperations: DataOperations, private dialog: MatDialog) { }
+  constructor(private dataService: DataService, public snackBar: MatSnackBar, private dataOperations: DataOperations, private dialog: MatDialog) { }
 
   ngOnInit() {
   }
   
   //Opens the CatDialogComponent in order to add a cat to the dataset when
   //somebody hits the add Cats button
-  openDialog(){
+  addCat(){
     let dialogRef = this.dialog.open(CatDialogComponent, {
       width: '600px',
       data: {}
@@ -65,7 +66,9 @@ export class AllCatsViewComponent implements OnInit {
 
   //Deletes the cat from the Jexia dataset when the delete button is clicked.
   deleteCat(id: string){
+    this.snackBar.open('Cat was deleted', 'Cancel', {duration:3000})
     return this.dataService.removeCat(id);
+    
   }
 
   //Opens the filterDialog to set some filter parameters to filter the cats dataset

@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { ICat } from '../interfaces/cat';
 import { IShelter} from '../interfaces/shelter';
-import { DataOperations } from 'ng-jexia';
+import { DataOperations } from '@jexia/ng-jexia';
 import { field } from 'jexia-sdk-js/api/dataops/filteringApi';
 import { getCurrentDebugContext } from '@angular/core/src/view/services';
 import { Observable, from } from 'rxjs';
@@ -53,10 +53,19 @@ export class DataService {
     let filterColor = field("color").isEqualTo(cat.color);
     let filterRace = field("race").isEqualTo(cat.race);
     let filterVaccinated = field("vaccinated").isEqualTo(cat.vaccinated);
+    let filtercolorAndRace = field("color").isEqualTo(cat.color).and(field("race").isEqualTo(cat.race));
+    let filtercolorAndVaccinated = field("color").isEqualTo(cat.color).and(field("vaccinated").isEqualTo(cat.vaccinated));
+    let filterraceAndVaccinated = field("race").isEqualTo(cat.race).and(field("vaccinated").isEqualTo(cat.vaccinated));
     let filterAllConditions =  field("color").isEqualTo(cat.color).and(field("race").isEqualTo(cat.race).and(field("vaccinated").isEqualTo(cat.vaccinated)))
 
     if(cat.color && cat.race && cat.vaccinated){
       return this.catDataset.select().where(filterAllConditions).execute();
+    } else if (cat.color && cat.race){
+      return this.catDataset.select().where(filtercolorAndRace).execute();
+    } else if (cat.color && cat.vaccinated){
+      return this.catDataset.select().where(filtercolorAndRace).execute();
+    } else if (cat.race && cat.vaccinated){
+      return this.catDataset.select().where(filterraceAndVaccinated).execute();
     } else if(cat.color){
       return this.catDataset.select().where(filterColor).execute();
     } else if(cat.race){

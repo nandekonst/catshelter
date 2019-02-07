@@ -3,7 +3,7 @@ import { MatDialogRef } from '@angular/material';
 import {MatDialogModule} from '@angular/material/dialog';
 import { MAT_DIALOG_DATA} from '@angular/material';
 import {DataService} from '../../services/data.service';
-import {FormsModule, FormGroup, FormControl,  ReactiveFormsModule, FormBuilder} from '@angular/forms';
+import {FormGroup, FormControl,  ReactiveFormsModule, FormBuilder} from '@angular/forms';
 import {MatInputModule} from '@angular/material/input';
 import {MatRadioModule} from '@angular/material/radio';
 import {MatFormFieldModule} from '@angular/material/form-field';

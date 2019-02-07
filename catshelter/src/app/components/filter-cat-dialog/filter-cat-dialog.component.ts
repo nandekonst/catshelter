@@ -58,9 +58,6 @@ filterRecords:any
     
   }
 
-
-
-
   onCloseCancel(){
     this.dialogRef.close("Cancel")
   }

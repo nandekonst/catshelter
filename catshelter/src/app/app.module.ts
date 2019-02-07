@@ -19,6 +19,7 @@ import {MatCheckboxModule} from '@angular/material/checkbox';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule   } from '@angular/material';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
 
 
 import {ReactiveFormsModule, FormsModule,FormGroup } from '@angular/forms';
@@ -26,7 +27,7 @@ import {CdkTableModule} from '@angular/cdk/table';
 
 import { OverviewComponent } from './components/overview/overview.component';
 import { ShelterComponent } from './components/shelter/shelter.component';
-import { NgJexiaModule, DataOperationsModule } from 'ng-jexia';
+import { NgJexiaModule, DataOperationsModule } from '@jexia/ng-jexia';
 import { CatDialogComponent } from './components/cat-dialog/cat-dialog.component';
 import {ShelterDialogComponent} from './components/shelter-dialog/shelter-dialog.component';
 import {DataService} from './services/data.service';
@@ -78,7 +79,8 @@ import { AllCatsViewComponent } from './components/all-cats-view/all-cats-view.c
     ReactiveFormsModule, 
     FormsModule,
     MatDatepickerModule,
-    MatNativeDateModule
+    MatNativeDateModule,
+    MatSnackBarModule
     
     
   ],

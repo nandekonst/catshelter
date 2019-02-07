@@ -3,8 +3,8 @@ import {FormsModule} from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA, MatNativeDateModule   } from '@angular/material';
 import {DataService} from '../../services/data.service';
 import {MatDatepickerModule} from '@angular/material/datepicker';
-
- 
+import {Color} from '../../interfaces/color';
+import {Race} from '../../interfaces/race';
 
 @Component({
   selector: 'app-updatecat-dialog',
@@ -14,6 +14,23 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 export class UpdatecatDialogComponent implements OnInit {
   
 catToUpdate:string  = this.data
+
+
+colors: Color[] = [
+  {value: "black", viewValue: "Black"},
+  {value: "white", viewValue: "White"},
+  {value: "grey", viewValue: "Grey"},
+  {value: "red", viewValue: "Red"}
+ ]
+
+ races: Race[] = [
+   {value: "maine coon", viewValue: "Maine Coon"},
+   {value: "bengal", viewValue: "Bengal"},
+   {value: "siamese", viewValue: "Siamese"},
+   {value: "european shorthair", viewValue: "European Shorthai"},
+
+ ]
+
 
 constructor(private dataservice: DataService,  private dialogRef: MatDialogRef<UpdatecatDialogComponent> ,  @Inject(MAT_DIALOG_DATA) private data: string) { }
 
