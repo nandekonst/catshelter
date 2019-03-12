@@ -12,49 +12,49 @@ import { Dataset } from 'jexia-sdk-js/api/dataops/dataset';
 })
 export class DataService {
 
-  shelterDataset: Dataset<IShelter> = this.dataOperations.dataset<IShelter>('shelters')
+  shelterDataset: Dataset<IShelter> = this.dataOperations.dataset<IShelter>('shelters');
   catDataset: Dataset<ICat> = this.dataOperations.dataset<ICat>('cats');
   sortAsc
   public catsds = this.catDataset.select().execute();
   public cats:   Promise<ICat[]> = this.catDataset.select().relation(this.shelterDataset).execute();
   //public cats: Observable<ICat[]> = from(this.catDataset.select().relation(this.shelterDataset).execute());
-  public shelters = this.shelterDataset.select().execute();
+  public shelters: Promise<IShelter[]> = this.shelterDataset.select().execute();
   
   constructor(private dataOperations: DataOperations) { }
 
-  addCat(cat: ICat[]){
+  addCat(cat: ICat[]):Promise<Array<ICat>>{
     console.log("THE CAT" + JSON.stringify(cat))
-    this.catDataset.insert(cat).execute();
+    return this.catDataset.insert(cat).execute();
   }
 
-  addShelter(shelter: IShelter[]){
-    this.shelterDataset.insert(shelter).execute();
+  addShelter(shelter: IShelter[]):Promise<Array<IShelter>>{
+   return this.shelterDataset.insert(shelter).execute();
   }
   
-  removeShelter(id: string){
-    this.shelterDataset.delete().where(field("id").isEqualTo(id)).execute();
+  removeShelter(id: string):Promise<Array<IShelter>>{
+    return this.shelterDataset.delete().where(field("id").isEqualTo(id)).execute();
   }
 
-  removeCat(id: string){
-    this.catDataset.delete().where(field("id").isEqualTo(id)).execute();
+  removeCat(id: string):Promise<Array<ICat>>{
+    return this.catDataset.delete().where(field("id").isEqualTo(id)).execute();
   }
 
-  updateCat(cat: ICat){
+  updateCat(cat: ICat):Promise<Array<ICat>>{
     const filter = field("id").isEqualTo(cat.id)
-    this.catDataset.update({"id":cat.id, "name":cat.name,"color":cat.color, "updated_at": cat.updated_at,"date_of_birth": cat.date_of_birth, "race":cat.race,"vaccinated": cat.vaccinated }).where(filter).execute();
+    return this.catDataset.update({"id":cat.id, "name":cat.name,"color":cat.color, "updated_at": cat.updated_at,"date_of_birth": cat.date_of_birth, "race":cat.race,"vaccinated": cat.vaccinated }).where(filter).execute();
   }
 
-  updateShelter(shelter:IShelter){
+  updateShelter(shelter: IShelter):Promise<Array<IShelter>>{
     const filter = field("id").isEqualTo(shelter.id)
-    this.shelterDataset.update({"id":shelter.id, "name":shelter.name, "address": shelter.address, "telephone": shelter.telephone, "email": shelter.email})
+    return this.shelterDataset.update({"id":shelter.id, "name":shelter.name, "address": shelter.address, "updated_at":shelter.updated_at, "telephone": shelter.telephone, "email": shelter.email}).where(filter).execute();
   }
 
-  filterCats(cat: any):Promise<Array<any>>{
-    console.log("COLOR" + cat.color)
-    console.log("RACE" + cat.race)
-    console.log("VACINNATED" + cat.vaccinated)
-    let vaccinated = cat.vaccinated;
-    let vaccinatedasString = vaccinated? "true":"false";
+  filterCats(cat: ICat):Promise<Array<ICat>>{
+    //console.log("COLOR" + cat.color)
+    //console.log("RACE" + cat.race)
+    //console.log("VACINNATED" + cat.vaccinated)
+    //let vaccinated = cat.vaccinated;
+    //let vaccinatedasString = vaccinated? "true":"false";
     let filterColor = field("color").isEqualTo(cat.color);
     let filterRace = field("race").isEqualTo(cat.race);
     let filterVaccinated = field("vaccinated").isEqualTo(cat.vaccinated);
@@ -81,11 +81,11 @@ export class DataService {
 
   }
 
-  sortAscending():Promise<Array<any>>{
+  sortAscending():Promise<Array<ICat>>{
     return this.catDataset.select().sortAsc("name").execute();
   }
 
-  sortDescending():Promise<Array<any>>{
+  sortDescending():Promise<Array<ICat>>{
     return this.catDataset.select().sortDesc("name").execute();
   }
 

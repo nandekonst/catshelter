@@ -54,7 +54,6 @@ export class CatDialogComponent implements OnInit {
   ngOnInit() {
 
     this.catform = this.formbuilder.group({
-      id: this.id,
       name: this.name,
       color:this.color,
       race:this.race,

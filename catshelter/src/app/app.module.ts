@@ -54,8 +54,8 @@ import { AllCatsViewComponent } from './components/all-cats-view/all-cats-view.c
     BrowserModule,
     NgJexiaModule.initialize({
       projectID: '69d260b4-e887-43f8-9096-586f9ddd57be',
-      key: '5d43c06d-974d-46a8-8299-164dc4e6a7f0',
-      secret: 'jNmyFzXInsyE3RZB',
+      key: '8fb2f565-826c-4e5f-a776-deb63b71b69d',
+      secret: 'nB8yWhNzuprx5RLp',
       providers: [
         DataOperationsModule,
       ],
