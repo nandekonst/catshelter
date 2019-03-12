@@ -57,9 +57,10 @@ export class AllCatsViewComponent implements OnInit {
   }
   
   editCat(cat: ICat[]){
+    console.log("CAT" + JSON.stringify(cat))
     let dialogRef = this.dialog.open(UpdatecatDialogComponent, {
       width: '600px',
-      data: { cat }
+      data:cat 
     });
 
   }

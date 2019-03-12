@@ -43,7 +43,7 @@ export class ShelterComponent implements OnInit {
   editShelter(shelter: IShelter[]){
     let dialogRef = this.dialog.open(UpdateshelterDialogComponent, {
       width: '600px',
-      data: { shelter  }
+      data:shelter  
     });
   }
 

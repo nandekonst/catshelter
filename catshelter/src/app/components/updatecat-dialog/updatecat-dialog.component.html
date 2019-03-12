@@ -8,27 +8,27 @@
 
   
    <mat-form-field class="formfield">
-        <input type="text"  matInput placeholder="name" [(ngModel)]="catToUpdate.cat.name" name="name" [value]="catToUpdate.cat.name" class="form-control">
+        <input type="text"  matInput placeholder="name" [(ngModel)]="catToUpdate.name" name="name" [value]="catToUpdate.name" class="form-control">
     </mat-form-field>
 
     <mat-form-field class="formfield">
-        <input type="text" matInput placeholder="color"  [(ngModel)]="catToUpdate.cat.color" name="color" [value]="catToUpdate.cat.color" class="form-control">
+        <input type="text" matInput placeholder="color"  [(ngModel)]="catToUpdate.color" name="color" [value]="catToUpdate.color" class="form-control">
     </mat-form-field>
 
     <mat-form-field class="formfield">
-        <input type="text" matInput placeholder="race"  [(ngModel)]="catToUpdate.cat.race" name="race"[value]="catToUpdate.cat.race" class="form-control">
+        <input type="text" matInput placeholder="race"  [(ngModel)]="catToUpdate.race" name="race"[value]="catToUpdate.race" class="form-control">
     </mat-form-field>
 
     
     <mat-form-field class="formfield">
         <input matInput>
-        <mat-checkbox placeholder="Vaccinated" [(ngModel)]="catToUpdate.cat.vaccinated" name="false"  >Yes</mat-checkbox>
+        <mat-checkbox placeholder="Vaccinated" [(ngModel)]="catToUpdate.vaccinated" name="false"  >Yes</mat-checkbox>
 
     </mat-form-field>
    
     
     <mat-form-field>
-      <input matInput [matDatepicker]="picker" [(ngModel)]="catToUpdate.cat.date_of_birth" name="date_of_birth" placeholder="Choose a birth date">
+      <input matInput [matDatepicker]="picker" [(ngModel)]="catToUpdate.date_of_birth" name="date_of_birth" placeholder="Choose a birth date">
       <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
       <mat-datepicker #picker></mat-datepicker>
     </mat-form-field>

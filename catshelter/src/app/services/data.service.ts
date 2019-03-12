@@ -39,9 +39,14 @@ export class DataService {
     this.catDataset.delete().where(field("id").isEqualTo(id)).execute();
   }
 
-  updateCat(cat: any){
-    const filter = field("id").isEqualTo(cat.cat.id)
-    this.catDataset.update({"id":cat.cat.id, "name":cat.cat.name,"color":cat.cat.color, "updated_at": cat.updated_at,"date_of_birth": cat.cat.date_of_birth, "race":cat.cat.race,"vaccinated": cat.cat.vaccinated }).where(filter).execute();
+  updateCat(cat: ICat){
+    const filter = field("id").isEqualTo(cat.id)
+    this.catDataset.update({"id":cat.id, "name":cat.name,"color":cat.color, "updated_at": cat.updated_at,"date_of_birth": cat.date_of_birth, "race":cat.race,"vaccinated": cat.vaccinated }).where(filter).execute();
+  }
+
+  updateShelter(shelter:IShelter){
+    const filter = field("id").isEqualTo(shelter.id)
+    this.shelterDataset.update({"id":shelter.id, "name":shelter.name, "address": shelter.address, "telephone": shelter.telephone, "email": shelter.email})
   }
 
   filterCats(cat: any):Promise<Array<any>>{
@@ -84,10 +89,7 @@ export class DataService {
     return this.catDataset.select().sortDesc("name").execute();
   }
 
-  updateShelter(shelter:any){
-    const filter = field("id").isEqualTo(shelter.shelter.id)
-    this.shelterDataset.update({"id":shelter.shelter.id, "name":shelter.shelter.name, "address": shelter.shelter.address, "telephone": shelter.shelter.telephone, "email": shelter.shelter.email})
-  }
+
 
 
 }

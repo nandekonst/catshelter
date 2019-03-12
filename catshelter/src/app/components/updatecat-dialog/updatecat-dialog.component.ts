@@ -5,6 +5,7 @@ import {DataService} from '../../services/data.service';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {Color} from '../../interfaces/color';
 import {Race} from '../../interfaces/race';
+import { ICat } from 'src/app/interfaces/cat';
 
 @Component({
   selector: 'app-updatecat-dialog',
@@ -12,8 +13,7 @@ import {Race} from '../../interfaces/race';
   styleUrls: ['./updatecat-dialog.component.css']
 })
 export class UpdatecatDialogComponent implements OnInit {
-  
-catToUpdate:string  = this.data
+catToUpdate:ICat  = this.data;
 
 
 colors: Color[] = [
@@ -32,7 +32,7 @@ colors: Color[] = [
  ]
 
 
-constructor(private dataservice: DataService,  private dialogRef: MatDialogRef<UpdatecatDialogComponent> ,  @Inject(MAT_DIALOG_DATA) private data: string) { }
+constructor(private dataservice: DataService,  private dialogRef: MatDialogRef<UpdatecatDialogComponent> ,  @Inject(MAT_DIALOG_DATA) private data: ICat) { }
 
  ngOnInit() {
 
