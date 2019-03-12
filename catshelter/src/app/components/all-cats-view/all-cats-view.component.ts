@@ -3,7 +3,6 @@ import {MatTableDataSource} from '@angular/material';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import { DataOperations } from '@jexia/ng-jexia';
 import {MatDialogModule, MatDialog, MatDialogRef} from "@angular/material/dialog";
-import {CdkTableModule} from '@angular/cdk/table';
 import {DataService} from '../../services/data.service';
 import {CatDialogComponent} from '../cat-dialog/cat-dialog.component';
 import {UpdatecatDialogComponent} from '../updatecat-dialog/updatecat-dialog.component';
@@ -20,6 +19,11 @@ import {MatSnackBar} from '@angular/material';
   styleUrls: ['./all-cats-view.component.css']
 })
 export class AllCatsViewComponent implements OnInit {
+
+  //This is our Jexia cats related dataset cats/shelters from our service in order to
+  //display all cats and the shelter they belong to
+  cats:Promise<ICat[]> = this.dataService.cats;
+
   //An output even to emit an boolean event from the child component to a parent.
   @Output() notifyAllCats: EventEmitter<boolean> = new EventEmitter<boolean>();
   @Output() notifyFilteredCats: EventEmitter<any> = new EventEmitter<any>();
@@ -34,9 +38,6 @@ export class AllCatsViewComponent implements OnInit {
   //These are the columns to display in the Material Data Table
   dialogResult = "";
   
-  //This is our Jexia cats related dataset cats/shelters from our service in order to
-  //display all cats and the shelter they belong to
-  cats:Promise<ICat[]> = this.dataService.cats;
 
   constructor(private dataService: DataService, public snackBar: MatSnackBar, private dataOperations: DataOperations, private dialog: MatDialog) { }
 
@@ -56,7 +57,7 @@ export class AllCatsViewComponent implements OnInit {
     })
   }
   
-  editCat(cat: ICat[]){
+  editCat(cat: ICat){
     console.log("CAT" + JSON.stringify(cat))
     let dialogRef = this.dialog.open(UpdatecatDialogComponent, {
       width: '600px',
